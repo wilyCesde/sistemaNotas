@@ -43,8 +43,11 @@ export default function App() {
     }
   };
   const agregarEstudiante = () => {
-
-
+    if (!id || !nombre || !asignatura || !nota1 || !nota2 || !nota3) {
+      alert('Todos los campos son obligatorios');
+      return;
+    }
+  
     const estudiante = {
       id: id,
       nombre: nombre,
@@ -55,11 +58,10 @@ export default function App() {
       notaFinal: resultado.toFixed(2),
       observaciones: observaciones
     };
-
+  
     setDatosEstudiantes([...datosEstudiantes, estudiante]);
     alert('Estudiante agregado correctamente');
   };
-
   const limpiarCampos = () => {
     setId('');
     setNota1('');
