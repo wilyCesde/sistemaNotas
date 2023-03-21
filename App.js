@@ -31,7 +31,7 @@ export default function App() {
       return;
     }
     const definitiva = notas.reduce((total, nota) => total + nota, 0) / notas.length;
-setResultado(+definitiva);
+    setResultado(+definitiva);
 
     if (definitiva >= 3) {
       setObservaciones('Aprueba');
@@ -42,8 +42,8 @@ setResultado(+definitiva);
     }
   };
   const agregarEstudiante = () => {
-    
-  
+
+
     const estudiante = {
       id: id,
       nombre: nombre,
@@ -54,7 +54,7 @@ setResultado(+definitiva);
       notaFinal: resultado.toFixed(2),
       observaciones: observaciones
     };
-  
+
     setDatosEstudiantes([...datosEstudiantes, estudiante]);
     alert('Estudiante agregado correctamente');
   };
@@ -70,79 +70,79 @@ setResultado(+definitiva);
     setObservaciones('');
   };
 
-const [datosEstudiantes, setDatosEstudiantes] = useState([]);
+  const [datosEstudiantes, setDatosEstudiantes] = useState([]);
 
 
-const buscarEstudiante = (idBuscado, nombreBuscado) => {
-  const estudianteEncontrado = datosEstudiantes.find(
-    estudiante => estudiante.id === idBuscado || estudiante.nombre === nombreBuscado
-  );
-  if (estudianteEncontrado) {
-    setId(estudianteEncontrado.id);
-    setNombre(estudianteEncontrado.nombre);
-    setAsignatura(estudianteEncontrado.asignatura);
-    setNota1(estudianteEncontrado.nota1);
-    setNota2(estudianteEncontrado.nota2);
-    setNota3(estudianteEncontrado.nota3);
-    setResultado(estudianteEncontrado.notaFinal);
-    setObservaciones(estudianteEncontrado.observaciones);
-  } else {
-    alert('No se encontró al estudiante');
-  }
-};
+  const buscarEstudiante = (idBuscado, nombreBuscado) => {
+    const estudianteEncontrado = datosEstudiantes.find(
+      estudiante => estudiante.id === idBuscado || estudiante.nombre === nombreBuscado
+    );
+    if (estudianteEncontrado) {
+      setId(estudianteEncontrado.id);
+      setNombre(estudianteEncontrado.nombre);
+      setAsignatura(estudianteEncontrado.asignatura);
+      setNota1(estudianteEncontrado.nota1);
+      setNota2(estudianteEncontrado.nota2);
+      setNota3(estudianteEncontrado.nota3);
+      setResultado(estudianteEncontrado.notaFinal);
+      setObservaciones(estudianteEncontrado.observaciones);
+    } else {
+      alert('No se encontró al estudiante');
+    }
+  };
 
   return (
-  
-      <View style={styles.container}>
-        <Text style={styles.titulo}>Sistema de Notas</Text>
-        <Text style={styles.label}>Identificación:</Text>
-        <TextInput
-          style={styles.input}
-          value={id}
-          onChangeText={setId}
-        />
-        <Text style={styles.label}>Nombres:</Text>
-        <TextInput
-          style={styles.input}
-          value={nombre}
-          onChangeText={setNombre}
-        />
-        <Text style={styles.label}>Asignatura:</Text>
-        <TextInput
-          style={styles.input}
-          value={asignatura}
-          onChangeText={setAsignatura}
-        />
-        <Text style={styles.label}>Nota Momento 1 (20%):</Text>
-        <TextInput
-          style={styles.input}
-          value={nota1}
-          onChangeText={setNota1}
-        />
-        <Text style={styles.label}>Nota Momento 2 (35%):</Text>
-        <TextInput
-          style={styles.input}
-          value={nota2}
-          onChangeText={setNota2}
-        />
-        <Text style={styles.label}>Nota Momento 3 (35%):</Text>
-        <TextInput
-          style={styles.input}
-          value={nota3}
-          onChangeText={setNota3}
-        />
-        <Text style={styles.label}>Definitiva:</Text>
-        <Text>{resultado.toFixed(2)}</Text>
-        <Text style={styles.label}>Observaciones:</Text>
-        <Text>{observaciones}</Text>
-        <View style={styles.botones}>
-          <Button title="Calcular" onPress={calcularNotaDefinitiva} />
-          <Button title="Limpiar" onPress={limpiarCampos} />
-          <Button title="Buscar" onPress={() => buscarEstudiante(id, nombre)} />
 
-        </View>
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Sistema de Notas</Text>
+      <Text style={styles.label}>Identificación:</Text>
+      <TextInput
+        style={styles.input}
+        value={id}
+        onChangeText={setId}
+      />
+      <Text style={styles.label}>Nombres:</Text>
+      <TextInput
+        style={styles.input}
+        value={nombre}
+        onChangeText={setNombre}
+      />
+      <Text style={styles.label}>Asignatura:</Text>
+      <TextInput
+        style={styles.input}
+        value={asignatura}
+        onChangeText={setAsignatura}
+      />
+      <Text style={styles.label}>Nota Momento 1 (20%):</Text>
+      <TextInput
+        style={styles.input}
+        value={nota1}
+        onChangeText={setNota1}
+      />
+      <Text style={styles.label}>Nota Momento 2 (35%):</Text>
+      <TextInput
+        style={styles.input}
+        value={nota2}
+        onChangeText={setNota2}
+      />
+      <Text style={styles.label}>Nota Momento 3 (35%):</Text>
+      <TextInput
+        style={styles.input}
+        value={nota3}
+        onChangeText={setNota3}
+      />
+      <Text style={styles.label}>Definitiva:</Text>
+      <Text>{resultado.toFixed(2)}</Text>
+      <Text style={styles.label}>Observaciones:</Text>
+      <Text>{observaciones}</Text>
+      <View style={styles.botones}>
+        <Button title="Calcular" onPress={calcularNotaDefinitiva} />
+        <Button title="Limpiar" onPress={limpiarCampos} />
+        <Button title="Buscar" onPress={() => buscarEstudiante(id, nombre)} />
+
       </View>
-    
+    </View>
+
   );
 }
 
