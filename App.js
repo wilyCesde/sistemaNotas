@@ -47,7 +47,7 @@ export default function App() {
       alert('Todos los campos son obligatorios');
       return;
     }
-  
+
     const estudiante = {
       id: id,
       nombre: nombre,
@@ -58,7 +58,7 @@ export default function App() {
       notaFinal: resultado.toFixed(2),
       observaciones: observaciones
     };
-  
+
     setDatosEstudiantes([...datosEstudiantes, estudiante]);
     alert('Estudiante agregado correctamente');
   };
@@ -73,7 +73,7 @@ export default function App() {
     setObservaciones('');
   };
 
-  
+
 
 
   const buscarEstudiante = () => {
