@@ -17,6 +17,7 @@ export default function App() {
   const [resultado, setResultado] = useState(0);
   const [id, setId] = useState('');
   const [observaciones, setObservaciones] = useState('');
+  const [datosEstudiantes, setDatosEstudiantes] = useState([]);
 
   const calcularNotaDefinitiva = () => {
     agregarEstudiante();
@@ -70,12 +71,12 @@ export default function App() {
     setObservaciones('');
   };
 
-  const [datosEstudiantes, setDatosEstudiantes] = useState([]);
+  
 
 
-  const buscarEstudiante = (idBuscado, nombreBuscado) => {
+  const buscarEstudiante = () => {
     const estudianteEncontrado = datosEstudiantes.find(
-      estudiante => estudiante.id === idBuscado || estudiante.nombre === nombreBuscado
+      estudiante => estudiante.id === id || estudiante.nombre === nombre
     );
     if (estudianteEncontrado) {
       setId(estudianteEncontrado.id);
@@ -84,13 +85,12 @@ export default function App() {
       setNota1(estudianteEncontrado.nota1);
       setNota2(estudianteEncontrado.nota2);
       setNota3(estudianteEncontrado.nota3);
-      setResultado(estudianteEncontrado.notaFinal);
+      setResultado(parseFloat(estudianteEncontrado.notaFinal));
       setObservaciones(estudianteEncontrado.observaciones);
     } else {
       alert('No se encontró al estudiante');
     }
   };
-
   return (
 
     <View style={styles.container}>
