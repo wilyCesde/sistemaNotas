@@ -21,7 +21,8 @@ export default function App() {
 
   const calcularNotaDefinitiva = () => {
     agregarEstudiante();
-
+    let observacioness = ""
+    let calculo = null
     if (!nota1 || !nota2 || !nota3 || !nombre || !asignatura) {
       setObservaciones('Todos los datos son obligatorios');
       return;
@@ -33,14 +34,31 @@ export default function App() {
     }
     const definitiva = notas.reduce((total, nota) => total + nota, 0) / notas.length;
     setResultado(+definitiva);
+    calculo = definitiva
 
     if (definitiva >= 3) {
       setObservaciones('Aprueba');
+      observacioness = "Aprueba"
     } else if (definitiva >= 2 && definitiva < 2.94) {
       setObservaciones('Habilita');
+      observacioness = "Habilita"
     } else {
       setObservaciones('Reprueba');
+      observacioness = "Reprueba"
     }
+
+    let estudiante = {
+      id: id,
+      nombre: nombre,
+      asignatura: asignatura,
+      nota1: nota1,
+      nota2: nota2,
+      nota3: nota3,
+      notaFinal: calculo,
+      observaciones: observacioness
+    };
+
+    datosEstudiantes.push(estudiante)
   };
   const agregarEstudiante = () => {
     if (!id || !nombre || !asignatura || !nota1 || !nota2 || !nota3) {
@@ -48,18 +66,6 @@ export default function App() {
       return;
     }
 
-    const estudiante = {
-      id: id,
-      nombre: nombre,
-      asignatura: asignatura,
-      nota1: nota1,
-      nota2: nota2,
-      nota3: nota3,
-      notaFinal: resultado.toFixed(2),
-      observaciones: observaciones
-    };
-
-    setDatosEstudiantes([...datosEstudiantes, estudiante]);
     alert('Estudiante agregado correctamente');
   };
   const limpiarCampos = () => {
@@ -73,13 +79,13 @@ export default function App() {
     setObservaciones('');
   };
 
-
-
-
   const buscarEstudiante = () => {
+
     const estudianteEncontrado = datosEstudiantes.find(
       estudiante => estudiante.id === id || estudiante.nombre === nombre
+
     );
+    console.log(estudianteEncontrado)
     if (estudianteEncontrado) {
       setId(estudianteEncontrado.id);
       setNombre(estudianteEncontrado.nombre);
@@ -134,9 +140,9 @@ export default function App() {
         onChangeText={setNota3}
       />
       <Text style={styles.label}>Definitiva:</Text>
-      <Text>{resultado.toFixed(2)}</Text>
+      <TextInput value={resultado.toFixed(2)} />
       <Text style={styles.label}>Observaciones:</Text>
-      <Text>{observaciones}</Text>
+      <TextInput value={observaciones} />
       <View style={styles.botones}>
         <Button title="Calcular" onPress={calcularNotaDefinitiva} />
         <Button title="Limpiar" onPress={limpiarCampos} />
